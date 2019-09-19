@@ -30,13 +30,21 @@ function mainMenu(person, people){
  }
  let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
  switch(displayOption){
-   case "info":
+   case "info": console.log(person[0]);
    // TODO: get person's info
    break;
-   case "family":
+   case "family": console.log(person[0].currentSpouse);
    // TODO: get person's family
    break;
-   case "descendants":
+   case "descendants": 
+
+  //  for (i = 0; i <= people.length; i++)
+  // {
+  //  if (people[i].parents == person[0].id)
+  //  {
+  //    console.log(people[i].name)
+  //  }
+  // }
    // TODO: get person's descendants
    break;
    case "restart":
