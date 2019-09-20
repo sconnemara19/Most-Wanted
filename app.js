@@ -201,11 +201,3 @@ return foundTrait;
 
  //let foundId = 
 //console.log(filterTrait);
-
-
-
- 
-
-
-
-
