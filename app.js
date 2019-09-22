@@ -78,6 +78,16 @@ if (person.length <= 1) {
     case "parents": console.log(person[0].parents);
    // TODO: get person's info
    break;
+
+
+
+
+    case "descendants": alert(showDescendants(person, people));
+    break;
+    case "family": alert(showFamily(person));
+    break;
+
+
    case "restart":
    app(people); // restart
    break;
@@ -109,7 +119,7 @@ let idVariable = parseInt(prompt("PLease Enter the ID#"));
    else{
      return false;
    }
- })
+ });
 
 
  // TODO: find the person using the name they entered
@@ -179,26 +189,71 @@ let foundTrait = people.filter(function(el){
 
 return foundTrait;
 }
-//let genderTrait = 
-//let weightTrait = people.filter(function(person){
-  // if(person.id === idVariable){
-     //return true; 
-//let heightTrait = people.filter(function(person){
- //  if(person.id === idVariable){
-    // return true;
 
-//})
-//let occupationTrait = people.filter(function(person){
-  // if(person.id === idVariable){
-    // return true;
+function showDescendants(person, people, x) 
+{ 
+     
+    people.length-1
 
-//})){
-  // if(person.id === idVariable){
-    // return true;
+    //1. analyze object
+    //2.  console
+    //3. delete that object
 
-//})
 
-  //return true;
 
- //let foundId = 
-//console.log(filterTrait);
+
+
+
+
+
+
+
+
+
+
+
+
+
+      let parentSelect = ""; //Julie, Brad
+
+
+      for (let i = 0; i <= 2; i++ ) 
+      {
+
+          people.parents[i] = parentSelect;
+
+         if (parentSelect == person.id) 
+
+         {
+            console.log("Child:" + people[x] );
+
+         }
+
+
+      }
+
+
+      return showDescendants();
+}
+
+
+
+
+
+
+
+function showFamily() 
+{
+
+      return showFamily();
+}
+
+
+
+
+
+
+
+
+
+
