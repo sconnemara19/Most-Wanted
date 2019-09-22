@@ -88,6 +88,8 @@ if (person.length <= 1) {
    return mainMenu(person, people); // ask again
  
     }
+    mainMenu(person, people);
+
 
   }
   else {
@@ -151,7 +153,7 @@ function chars(input){
 
 
 function searchTraits(people){
- let userInput = prompt("Do you want to by individual traits? Type in a trait. 'Gender', 'Age', 'Height', 'Weight', 'Eye color', 'Occupation'.")
+ let userInput = prompt("Do you want to search by individual traits? Type in a trait. 'Male', 'Female', 'Age', 'Height', 'Weight', 'Eye color', 'Occupation'.")
 
 let foundTrait = people.filter(function(el){
    if(el.gender === userInput){
@@ -172,7 +174,6 @@ let foundTrait = people.filter(function(el){
     else{
       return false;
     }
-
 
  });
 
