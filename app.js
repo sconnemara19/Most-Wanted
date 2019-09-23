@@ -186,10 +186,11 @@ let foundTrait = people.filter(function(el){
 return foundTrait;
 }
 
+
 function showFamily(person, people){
 
 
-let userInput = person[0].id;
+let userInput = person[0].id; //searched persons name
 
 
 let foundKids = people.filter(function(el){
@@ -204,31 +205,39 @@ let foundKids = people.filter(function(el){
     }
   });
 
-let foundSpouse = person[0].currentSpouse;
+let foundSpouse = person[0].currentSpouse; //the searched persons spouse
 
-let spouseName = people.filter(function(el) {
+let spouseName = people.filter(function(el){         //matches id with the spouse
 
-if(el.id === foundSpouse) {
+if(el.id === parseInt(foundSpouse)) {
   return true;
-}
-
-else {
+  }
+  else {
   return false;
 }
- 
+});
 
-return spouseName[0];
-})
-
-
-for (let i = 0; i < foundKids.length; i++){
-console.log("Spouse:" + spouseName[0].firstName + " " + spouseName[0].lastName + " " + "Kids:" + foundKids[i].firstName + " " + foundKids[i].lastName)
+if (foundSpouse !== "Does not have a spouse") 
+{
+  for (let i = 0; i < foundKids.length; i++){
+  console.log("Spouse:" + spouseName[0].firstName+ " "  + " " + "Kids:" + foundKids[i].firstName + " " + foundKids[i].lastName)
+  }
 }
 
-return foundKids;
+else if (foundSpouse == "Does not have a spouse")
+ {
+     let displayKids =  "";
 
+  for (let i = 0; i < foundKids.length; i++)
+    {
+    displayKids += " " + foundKids[i].firstName;
+    }
+    alert("Spouse: " + foundSpouse + " " + "Kids: " + displayKids);
+
+  }
 
 }
+
 
 // function showFamily(person, people){
 
