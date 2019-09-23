@@ -77,10 +77,10 @@ if (person.length <= 1) {
     case "parents": console.log(person[0].parents);
    // TODO: get person's info
    break;
-
     case "descendants": alert(showDescendants(person, people));
     break;
     case "family": alert(showFamily(person, people));
+
     break;
 
 
@@ -185,6 +185,7 @@ let foundTrait = people.filter(function(el){
 
 return foundTrait;
 }
+
 function showFamily(person, people){
 
 
@@ -296,7 +297,6 @@ return foundKids;
 
 //       return showFamily();
 // }
-
 
 
 
