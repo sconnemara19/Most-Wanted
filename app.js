@@ -28,25 +28,15 @@ function mainMenu(person, people){
 
 
  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
- if(!person){
+ if(!person || person[0] == undefined){
    alert("Could not find that individual.");
    return app(people); // restart
 
  }
-  if (person[0].parents.length == 0) 
-    {
-      person[0].parents = "Does not have parents";
-    }
-
-  if (person[0].currentSpouse == null) 
-    {
-      person[0].currentSpouse = "Does not have a spouse";
-    }
-  
 
 
 if (person.length <= 1) {
- let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " Select from the options below:  'Gender', 'DOB, 'Height', 'Weight', 'Eyecolor', 'Occupation', 'Parents', 'Current Spouse', 'Family', 'Descendants', 'Info' (display all), or 'restart' or 'quit'");
+ let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " Select from the options below:  'Gender', 'DOB, 'Height', 'Weight', 'Eyecolor', 'Occupation', 'Parents', 'Current Spouse', 'Family', 'Descendants', 'Info' (display all), or 'restart' or 'quit'").toLowerCase();
     
 
  switch(displayOption){
@@ -77,13 +67,12 @@ if (person.length <= 1) {
     case "parents": console.log(person[0].parents);
    // TODO: get person's info
    break;
-    case "descendants": alert(showDescendants(person, people));
+    case "descendants": showDescendants(person, people);
     break;
     case "family": alert(showFamily(person, people));
-
     break;
-
-
+    case undefined: console.log("Item cannot be found");
+    break;
    case "restart":
    app(people); // restart
    break;
@@ -91,7 +80,7 @@ if (person.length <= 1) {
    return; // stop execution
    default: console.log("Item cannot be found");
 
-   return mainMenu(person, people); // ask again
+   return app(people); // ask again
  
     }
     mainMenu(person, people);
@@ -101,6 +90,18 @@ if (person.length <= 1) {
   else {
     displayPeople(person);
       }
+
+
+      if (person[0].parents.length == 0) 
+    {
+      person[0].parents = "Does not have parents";
+    }
+
+  if (person[0].currentSpouse == null) 
+    {
+      person[0].currentSpouse = "Does not have a spouse";
+    }
+  
         let results = searchTraits(person);
 mainMenu(results);
 
@@ -117,15 +118,6 @@ let idVariable = parseInt(prompt("PLease Enter the ID#"));
    }
  });
 
-
- // TODO: find the person using the name they entered
- return foundId;
-}
-// alerts a list of people
-function displayPeople(people){
- alert(people.map(function(person){
-   return person.firstName + " " + person.lastName;
- }).join("\n"));
 }
 
 function displayPerson(person){
@@ -135,6 +127,12 @@ function displayPerson(person){
  personInfo += "Last Name: " + person.lastName + "\n";
  // TODO: finish getting the rest of the information to display
  alert(personInfo);
+}
+
+function displayPeople(people){
+ alert(people.map(function(person){
+   return person.firstName + " " + person.lastName;
+ }).join("\n"));
 }
 // function that prompts and validates user input
 function promptFor(question, valid){
@@ -159,7 +157,7 @@ function chars(input){
 
 
 function searchTraits(people){
- let userInput = prompt("Do you want to search by individual traits? Type in a trait. 'Male', 'Female', 'Age', 'Height', 'Weight', 'Eye color', 'Occupation'.")
+ let userInput = prompt("Do you want to search by individual traits? Type in a trait. 'Male', 'Female', 'Height', 'Weight', 'Eye color', 'Occupation'.")
 
 let foundTrait = people.filter(function(el){
    if(el.gender === userInput){
@@ -171,8 +169,8 @@ let foundTrait = people.filter(function(el){
     else if(el.occupation === userInput){
       return true;
     }
-    else if(el.weight === userInput){
-      return true
+    else if(el.weight <= userInput && el.weight >= (userInput-50)|| (el.weight <= userInput+50 && el.weight >= userInput)){
+      return true;
     }
     else if(el.height === userInput){
       return true;
@@ -238,6 +236,68 @@ else if (foundSpouse == "Does not have a spouse")
 
 }
 
+function showDescendants(person, people,counter)  //x, length of array is 0
+{
+      let descendantsArray;
+    
+if (counter === undefined){
+      descendantsArray = people.filter(function(el) {
+        if (person[0].id == el.parents[0]) {
+          return true;
+        }
+
+        else if(person[0].id == el.parents[1]) {
+          return true;
+        }
+
+        else {
+          return false;
+        }
+
+
+      });
+        counter = 0;
+          for (let i = 0; i< descendantsArray.length; i++) 
+      {
+          alert(descendantsArray[i].firstName);
+
+      }
+
+    }
+
+    else if (counter >= 0 && counter <= person.length-1) 
+      { descendantsArray = person;
+
+        let grandDescendantsArray = people.filter(function(el) {
+         if (person[counter].id === el.parents[0]) {
+          return true;
+         }
+
+         else if (person[counter].id === el.parents[1]) {
+          return true;
+         }
+
+        else {
+          return false;
+        }
+
+      });
+
+    for (let i = 0; i< grandDescendantsArray.length; i++) 
+      {
+          alert(grandDescendantsArray[i].firstName); //print grandchildren
+
+
+      }
+        counter++;
+
+  }
+
+  else return; 
+
+          return showDescendants(descendantsArray, people, counter)
+
+}
 
 // function showFamily(person, people){
 
