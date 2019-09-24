@@ -28,7 +28,7 @@ function mainMenu(person, people){
 
 
  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
- if(!person || person[0] == undefined){
+ if(!person){
    alert("Could not find that individual.");
    return app(people); // restart
 
@@ -36,7 +36,7 @@ function mainMenu(person, people){
 
 
 if (person.length <= 1) {
- let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " Select from the options below:  'Gender', 'DOB, 'Height', 'Weight', 'Eyecolor', 'Occupation', 'Parents', 'Current Spouse', 'Family', 'Descendants', 'Info' (display all), or 'restart' or 'quit'").toLowerCase();
+ let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + "\n Select from the options below(Input:Lower Case):\n  'Gender', 'DOB, 'Height', 'Weight', 'Eyecolor', 'Occupation', 'Parents', 'Current Spouse', 'Family', 'Descendants', 'Info' (display all), or 'restart' or 'quit'").toLowerCase();
     
 
  switch(displayOption){
@@ -117,6 +117,7 @@ let idVariable = parseInt(prompt("PLease Enter the ID#"));
      return false;
    }
  });
+ return foundId;
 
 }
 
@@ -299,73 +300,6 @@ if (counter === undefined){
 
 }
 
-// function showFamily(person, people){
-
-
-// let hasParents = people.filter(function(el) 
-// {
-//   if(el.parents.length>0) 
-//   {
-//     return true;
-//   }
-//   else {
-//     return false;
-//   }
-// });
-
-// let parentArray;
-// for (let i = 0; i< hasParents.length; i++) {
-// if (hasParents[i].parents.findIndex(0) === person.id)
-// {
-// parentArray = hasParents[i].parents.findIndex(0);
-
-// }
-
-// }
-// return parentArray;
-
-// let foundKids = hasParents.filter(function(el){
-//    if(person.id === hasParents.parents.indexOf(0)){
-//      return true;
-//    }
-//    else if (person.id === hasParents.parents.indexOf(0)){
-//      return true;
-//    }
-//    else {return false;}
-
-
- // });
-
-
-
-// function showDescendants(person, people) 
-// { 
-     
-//     people.length - 1
-
-//     //1. analyze object
-//     //2.  console
-//     //3. delete that object
-//           let parentSelect = ""; //Julie, Brad
-//               for (let i = 0; i <= 2; i++ ) 
-//       {
-
-//           people.parents[i] = parentSelect;
-
-//          if (parentSelect == person.id) 
-
-//          {
-//             console.log("Child:" + people[x] );
-
-//          }
-//        }
-//            return showDescendants();
-// }
-// function showFamily() 
-// {
-
-//       return showFamily();
-// }
 
 
 
